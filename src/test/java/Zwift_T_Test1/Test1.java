@@ -34,7 +34,7 @@ public class Test1 {
 
         driver.get("https://www.zwift.com/");*/
         //WebDriver driver = null;
-        WebDriverManager.chromedriver().browserVersion("92.0.4515.107").setup();
+        WebDriverManager.chromedriver().browserVersion("76.0.3809.126").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("enable-automation");
