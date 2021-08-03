@@ -46,7 +46,7 @@ public class Test1 {
 
         var cw = driver.findElements(By.id("truste-consent-buttons")).size() >0;
 
-        Assert.assertEquals(cw,false);
+        Assert.assertEquals(cw,true);
 
     }
 
