@@ -1,9 +1,11 @@
 package Zwift_T_Test1;
 
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -20,7 +22,7 @@ public class Test1 {
     @BeforeSuite
     public void SetUp() {
 
-        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
+        /*System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 40);
 
@@ -29,6 +31,19 @@ public class Test1 {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 
 
+        driver.get("https://www.zwift.com/");*/
+        //WebDriver driver = null;
+        WebDriverManager.chromedriver().browserVersion("77.0.3865.40").setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("enable-automation");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-browser-side-navigation");
+        options.addArguments("--disable-gpu");
+        //wait = new WebDriverWait(driver, 40);
+        driver = new ChromeDriver(options);
         driver.get("https://www.zwift.com/");
 
     }
