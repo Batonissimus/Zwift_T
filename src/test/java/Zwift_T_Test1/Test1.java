@@ -9,31 +9,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class Test1 {
 
     private WebDriver driver;
-    //private WebDriverWait wait;
+
 
     @BeforeSuite
     public void SetUp() {
 
-        /*System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 40);
-
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-
-
-        driver.get("https://www.zwift.com/");*/
-        //WebDriver driver = null;
         WebDriverManager.chromedriver().browserVersion("76.0.3809.126").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -43,7 +32,7 @@ public class Test1 {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-browser-side-navigation");
         options.addArguments("--disable-gpu");
-        //wait = new WebDriverWait(driver, 40);
+
         driver = new ChromeDriver(options);
         driver.get("https://www.zwift.com/");
 
@@ -57,7 +46,7 @@ public class Test1 {
 
         var cw = driver.findElements(By.id("truste-consent-buttons")).size() >0;
 
-        Assert.assertEquals(cw,true);
+        Assert.assertEquals(cw,false);
 
     }
 
@@ -107,5 +96,11 @@ public class Test1 {
             Assert.assertEquals(driver.findElement(By.xpath("//*[@class='map-sport-type']")).getText(),"CYCLING",
                     "Expected sport type is wrong");
         }
+    }
+
+    @AfterSuite
+    void quite()
+    {
+        driver.quit();
     }
 }
