@@ -20,7 +20,7 @@ public class Test1 {
     @BeforeSuite
     public void SetUp() {
 
-        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/home/runner/work/Zwift_T/Zwift_T//drivers/chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 40);
 
