@@ -12,12 +12,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Test1 {
 
     private WebDriver driver;
-    private WebDriverWait wait;
+    //private WebDriverWait wait;
 
     @BeforeSuite
     public void SetUp() {
@@ -33,7 +34,7 @@ public class Test1 {
 
         driver.get("https://www.zwift.com/");*/
         //WebDriver driver = null;
-        WebDriverManager.chromedriver().browserVersion("77.0.3865.40").setup();
+        WebDriverManager.chromedriver().browserVersion("92.0.4515.107").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("enable-automation");
@@ -46,10 +47,12 @@ public class Test1 {
         driver = new ChromeDriver(options);
         driver.get("https://www.zwift.com/");
 
+
     }
 
     @Test
     public void CookiesAcceptPopUp() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("truste-consent-button"))).click();
 
         var cw = driver.findElements(By.id("truste-consent-buttons")).size() >0;
@@ -60,7 +63,7 @@ public class Test1 {
 
     @Test
     public void EventsPage() {
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.xpath("//*[@aria-label='Open side navigation']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Events")));
         driver.findElement(By.linkText("Events")).click();
